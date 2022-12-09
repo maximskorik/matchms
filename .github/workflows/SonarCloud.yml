@@ -40,3 +40,5 @@ jobs:
           echo ${{ github.event.workflow_run.pull_requests[0].number }}
           echo ${{ github.event.workflow_run.pull_requests[0].head.ref }}
           echo ${{ github.event.workflow_run.pull_requests[0].base.ref }}
+          echo ${{ github.event.workflow_run.head_branch }}
+          echo ${{ github.event.workflow_run.head_repository.full_name }}
