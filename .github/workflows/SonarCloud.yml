@@ -23,8 +23,8 @@ jobs:
           echo ${{ github.event.workflow_run.repository.full_name }}
       - uses: actions/checkout@v3
         with:
-          repository: "maximskorik/matchms"
-          ref: "master"
+          repository: ${{ github.event.workflow_run.head_repository.full_name }}
+          ref: ${{ github.event.workflow_run.head_branch }}
           fetch-depth: 0
       - name: Fetch coverage report from artifact
         uses: dawidd6/action-download-artifact@v2
