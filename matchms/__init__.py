@@ -6,6 +6,7 @@ from .logging_functions import _init_logger, set_matchms_logger_level
 from .Metadata import Metadata
 from .Scores import Scores
 from .Spectrum import Spectrum
+from .ci_script import placeholder_function, trigger_ci
 
 
 _init_logger()
