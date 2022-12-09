@@ -49,6 +49,20 @@ jobs:
 #        run: prospector -o grouped -o pylint:pylint-report.txt
       - name: Check whether import statements are used consistently
         run: isort . --check-only --diff
+      - name: Store PR metadata in json file
+        uses: jsdaniell/create-json@v1.2.2
+        with:
+          name: "pr_metadata.json"
+          json: |
+            {
+              "pr_number": "${{ github.event.number }}",
+              "pr_base_ref": "${{ github.event.pull_request.base.ref }}",
+            }
+      - name: Upload PR metadata as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: pr_metadata
+          path: pr_metadata.json
 
 #  build_pypi:
 #    name: Test pypi build
