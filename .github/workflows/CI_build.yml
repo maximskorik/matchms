@@ -44,9 +44,9 @@ jobs:
           path: |
             coverage.xml
             xunit-result.xml
-      - name: Check style against standards using prospector
-        shell: bash -l {0}
-        run: prospector -o grouped -o pylint:pylint-report.txt
+#      - name: Check style against standards using prospector
+#        shell: bash -l {0}
+#        run: prospector -o grouped -o pylint:pylint-report.txt
       - name: Check whether import statements are used consistently
         run: isort . --check-only --diff
 
