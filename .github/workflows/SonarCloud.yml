@@ -12,6 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.workflow_run.conclusion == 'success'
     steps:
+      - name: debug
+        run: |
+          echo ${{ github.event.workflow_run.head_sha }}
+          echo ${{ github.event.workflow_run.pull_requests[0].number }}
+          echo ${{ github.event.workflow_run.pull_requests[0].head.ref }}
+          echo ${{ github.event.workflow_run.pull_requests[0].base.ref }}
+          echo ${{ github.event.workflow_run.head_branch }}
+          echo ${{ github.event.workflow_run.head_repository.full_name }}
       - uses: actions/checkout@v3
         with:
           repository: "maximskorik/matchms"
@@ -35,8 +43,3 @@ jobs:
             -Dsonar.pullrequest.branch=${{ github.event.workflow_run.pull_requests[0].head.ref }}
             -Dsonar.pullrequest.base=${{ github.event.workflow_run.pull_requests[0].base.ref }}
       - name: debug
-        run: |
-          echo ${{ github.event.workflow_run.head_sha }}
-          echo ${{ github.event.workflow_run.pull_requests[0].number }}
-          echo ${{ github.event.workflow_run.pull_requests[0].head.ref }}
-          echo ${{ github.event.workflow_run.pull_requests[0].base.ref }}
