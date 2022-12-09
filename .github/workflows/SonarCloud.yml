@@ -12,21 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.workflow_run.conclusion == 'success'
     steps:
-      - name: debug
-        run: |
-          echo ${{ github.event.workflow_run.head_sha }}
-          echo ${{ github.event.workflow_run.number }}
-          echo ${{ github.event.workflow_run.pull_requests[0] }}
-          echo ${{ github.event.workflow_run.base.ref }}
-          echo ${{ github.event.workflow_run.head_branch }}
-          echo ${{ github.event.workflow_run.head_repository.full_name }}
-          echo ${{ github.event.workflow_run.repository.full_name }}
-          echo workflow_run: ${{ github.event.workflow_run }}
-          echo workflow: ${{ github.event.workflow_run.workflow }}
-      - name: Dump workflow_run context
-        env:
-          WORKFLOW_CONTEXT: ${{ toJson(github.event.workflow_run) }}
-        run: echo "$WORKFLOW_CONTEXT"
       - uses: actions/checkout@v3
         with:
           repository: ${{ github.event.workflow_run.head_repository.full_name }}
@@ -43,6 +28,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.scm.revision=${{ github.event.workflow_run.head_sha }}
