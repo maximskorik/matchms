@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: "maximskorik/matchms"
-          ref: ${{ github.event.workflow_run.head_branch }}
+          ref: "master"
           fetch-depth: 0
       - name: Fetch coverage report from artifact
         uses: dawidd6/action-download-artifact@v2
