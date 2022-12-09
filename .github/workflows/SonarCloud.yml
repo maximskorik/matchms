@@ -21,6 +21,8 @@ jobs:
           echo ${{ github.event.workflow_run.head_branch }}
           echo ${{ github.event.workflow_run.head_repository.full_name }}
           echo ${{ github.event.workflow_run.repository.full_name }}
+          echo workflow_run: ${{ github.event.workflow_run }}
+          echo workflow: ${{ github.event.workflow_run.workflow }}
       - uses: actions/checkout@v3
         with:
           repository: ${{ github.event.workflow_run.head_repository.full_name }}
@@ -40,6 +42,3 @@ jobs:
         with:
           args: >
             -Dsonar.scm.revision=${{ github.event.workflow_run.head_sha }}
-            -Dsonar.pullrequest.key=${{ github.event.workflow_run.pull_requests[0].number }}
-            -Dsonar.pullrequest.branch=${{ github.event.workflow_run.pull_requests[0].head.ref }}
-            -Dsonar.pullrequest.base=${{ github.event.workflow_run.pull_requests[0].base.ref }}
