@@ -49,6 +49,8 @@ jobs:
 #        run: prospector -o grouped -o pylint:pylint-report.txt
       - name: Check whether import statements are used consistently
         run: isort . --check-only --diff
+      - name: Echo PR number
+        run: echo ${{ github.event.pull_request.number }}
 
 #  build_pypi:
 #    name: Test pypi build
