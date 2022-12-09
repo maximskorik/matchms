@@ -1,2 +1,2 @@
-def trigger_ci_again():
-    print("Triggering CI")
+def add_ci_trigger():
+    print("Triggered CI")
